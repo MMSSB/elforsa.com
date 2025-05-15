@@ -47,6 +47,7 @@
   animation-delay: 1s;
   -webkit-animation-delay: var(--animate-delay);
   animation-delay: var(--animate-delay);
+    text-align: center;
 }
 .animate__animated.animate__delay-2s {
   -webkit-animation-delay: calc(1s * 2);
