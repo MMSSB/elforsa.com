@@ -1,0 +1,224 @@
+        .slider-container {
+            width: 800px;
+            max-width: 90vw;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            /*box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            */z-index: 5;
+            /*background: rgba(0, 0, 0, 0.2);
+            */backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px;
+            /*border: 1px solid rgba(255, 255, 255, 0.2);
+            */animation: appear 1s ease-out;
+
+}
+        
+        /* @keyframes appear {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        } */
+        
+        .slider {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 0.5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            border-radius: 1.5rem;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 8s ease-in-out;
+        }
+        
+        .slide.active img {
+            transform: scale(1.1);
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.7s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .slide.active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.3s;
+        }
+        
+        .slide:hover .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Slide title and description parallax effects */
+        .slide-title {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+            transition-delay: 0.2s;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .slide-description {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+            transition-delay: 0.4s;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .slide.active .slide-title,
+        .slide.active .slide-description {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Navigation arrows */
+        .navigation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 30;
+        }
+        
+        .nav-btn.prev {
+            left: 20px;
+        }
+        
+        .nav-btn.next {
+            right: 20px;
+        }
+        
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        /* Dots indicators */
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            z-index: 10;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        /* Animation keyframes for transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(1.2); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Transition effect classes */
+        .transition-fade .slide-content {
+            animation: fadeIn 1s forwards;
+        }
+        
+        .transition-slideRight .slide-content {
+            animation: slideInRight 1s forwards;
+        }
+        
+        .transition-slideLeft .slide-content {
+            animation: slideInLeft 1s forwards;
+        }
+        
+        .transition-zoom .slide-content {
+            animation: zoomIn 1s forwards;
+        }
+        
+        .transition-slideUp .slide-content {
+            animation: slideInUp 1s forwards;
+        }
